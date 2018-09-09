@@ -5,11 +5,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class PanchayatRepository {
+public class BlockRepository {
+	
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
-	public void addPanchayat(String sql) {
+	public void addBlock(String sql) {
 		jdbcTemplate.execute(sql);
 	}
 }

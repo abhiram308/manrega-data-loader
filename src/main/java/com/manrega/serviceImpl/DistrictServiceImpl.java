@@ -8,12 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.manrega.repository.DistrictRepository;
+import com.manrega.service.BlockService;
 import com.manrega.service.DistrictService;
 
 @Component
 public class DistrictServiceImpl implements DistrictService {
 	@Autowired
 	DistrictRepository districtRepository;
+	@Autowired
+	BlockService blockService;
 
 	public void addDistricts(String url) throws Exception {
 		// remove this when we pass url as argument
@@ -34,6 +37,8 @@ public class DistrictServiceImpl implements DistrictService {
 					+ ", '" + districtName + "'," + stateCode + ")";
 
 			districtRepository.addDistrict(sql);
+			//Add blocks in that district
+			blockService.addBlocks("http://mnregaweb4.nic.in/netnrega/state_html/" + districtUrl);
 		}
 	}
 
